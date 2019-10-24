@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>крестики-нолики</title>
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			padding: 50px;
+		}
+		.pole{
+			width: 600px;
+			height: 600px;
+			display: flex;
+			flex-wrap: wrap;
+			position: relative;
+		}
+		p{
+			height: 200px;
+		}
+		.cl{
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+			text-align: center;
+			line-height: 200px;
+			font-size: 150px;
+		}
+		.cl1,
+		.cl2,
+		.cl3{
+			border-top: none;
+		}
+		.cl1,
+		.cl4,
+		.cl7{
+			border-left: none;
+		}
+		.cl7,
+		.cl8,
+		.cl9{
+			border-bottom: none;
+		}
+		.cl3,
+		.cl6,
+		.cl9{
+			border-right: none;
+		}
+		.line{
+			background: green;
+			position: absolute;
+			transition: 1s;
+		}
+		.line_1{
+			top: 100px;
+			width: 0px;
+			height: 2px;
+		}
+		.line_2{
+			top: 300px;
+			width: 0px;
+			height: 2px;
+		}
+		.line_3{
+			top: 500px;
+			width: 0px;
+			height: 2px;
+		}
+		.line_4{
+			left: 100px;
+			width: 2px;
+			height: 0px;
+		}
+		.line_5{
+			left: 300px;
+			width: 2px;
+			height: 0px;
+		}
+		.line_6{
+			left: 500px;
+			width: 2px;
+			height: 0px;
+		}
+		.line_7{
+			width: 0px;
+			height: 2px;
+			transform: rotate(45deg);
+			transform-origin: 0 0;
+		}
+		.line_8{
+			width: 0px;
+			height: 2px;
+			transform: rotate(-45deg);
+			transform-origin: right;
+			top: 0;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+
+
+	<div class="pole">
+		<div class="cl cl1"><p></p></div>
+		<div class="cl cl2"><p></p></div>
+		<div class="cl cl3"><p></p></div>
+		<div class="cl cl4"><p></p></div>
+		<div class="cl cl5"><p></p></div>
+		<div class="cl cl6"><p></p></div>
+		<div class="cl cl7"><p></p></div>
+		<div class="cl cl8"><p></p></div>
+		<div class="cl cl9"><p></p></div>
+		<div class="line line_1"></div>
+		<div class="line line_2"></div>
+		<div class="line line_3"></div>
+		<div class="line line_4"></div>
+		<div class="line line_5"></div>
+		<div class="line line_6"></div>
+		<div class="line line_7"></div>
+		<div class="line line_8"></div>
+	</div>
+
+	<script type="text/javascript">
+		
+		let text  = document.querySelectorAll('p');
+		let step = 0;
+		let line_a_1 = document.querySelector('.line_1'),
+		 	line_a_2 = document.querySelector('.line_2'),
+			line_a_3 = document.querySelector('.line_3'),
+			line_b_4 = document.querySelector('.line_4'),
+			line_b_5 = document.querySelector('.line_5'),
+			line_b_6 = document.querySelector('.line_6'),
+			line_c_7 = document.querySelector('.line_7'),
+			line_c_8 = document.querySelector('.line_8');
+
+		let drawnGame = true;
+
+
+		for (let i = 0; i < text.length; i++) {
+			
+			text[i].onclick = function(){
+				step++;
+				// console.log(text[i]);
+				if (text[i].innerHTML === '' && step % 2 == 1) {
+					text[i].innerHTML = 'X';
+				} else if(text[i].innerText == 'X'){
+					text[i].innerHTML = 'X';
+					step--;
+				} else if(text[i].innerText == 'O'){
+					text[i].innerHTML = 'O';
+					step--;
+				} else {
+					text[i].innerHTML = 'O';
+				}
+
+
+// ---------------------------------win X-----------------------------------------
+
+
+				if  (text[0].innerHTML == 'X' && text[1].innerHTML == 'X' && text[2].innerHTML == 'X'){
+						drawnGame = false;
+						line_a_1.style.width = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				} 
+				if	(text[3].innerHTML == 'X' && text[4].innerHTML == 'X' && text[5].innerHTML == 'X'){
+						drawnGame = false;
+						line_a_2.style.width = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[6].innerHTML == 'X' && text[7].innerHTML == 'X' && text[8].innerHTML == 'X'){
+						drawnGame = false;
+						line_a_3.style.width = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[0].innerHTML == 'X' && text[3].innerHTML == 'X' && text[6].innerHTML == 'X'){
+						drawnGame = false;
+						line_b_4.style.height = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[1].innerHTML == 'X' && text[4].innerHTML == 'X' && text[7].innerHTML == 'X'){
+						drawnGame = false;
+						line_b_5.style.height = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[2].innerHTML == 'X' && text[5].innerHTML == 'X' && text[8].innerHTML == 'X'){
+						drawnGame = false;
+						line_b_6.style.height = '600px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[0].innerHTML == 'X' && text[4].innerHTML == 'X' && text[8].innerHTML == 'X'){
+						drawnGame = false;
+						line_c_7.style.width = '840px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[2].innerHTML == 'X' && text[4].innerHTML == 'X' && text[6].innerHTML == 'X'){
+						drawnGame = false;
+						line_c_8.style.width = '840px';
+						setTimeout( function(){alert('Победил крестик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}		
+				
+//------------------------------------------win O------------------------------------------
+
+
+
+				if  (text[0].innerHTML == 'O' && text[1].innerHTML == 'O' && text[2].innerHTML == 'O'){
+						drawnGame = false;
+						line_a_1.style.width = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				} 
+				if	(text[3].innerHTML == 'O' && text[4].innerHTML == 'O' && text[5].innerHTML == 'O'){
+						drawnGame = false;
+						line_a_2.style.width = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[6].innerHTML == 'O' && text[7].innerHTML == 'O' && text[8].innerHTML == 'O'){
+						drawnGame = false;
+						line_a_3.style.width = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[0].innerHTML == 'O' && text[3].innerHTML == 'O' && text[6].innerHTML == 'O'){
+						drawnGame = false;
+						line_b_4.style.height = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[1].innerHTML == 'O' && text[4].innerHTML == 'O' && text[7].innerHTML == 'O'){
+						drawnGame = false;
+						line_b_5.style.height = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[2].innerHTML == 'O' && text[5].innerHTML == 'O' && text[8].innerHTML == 'O'){
+						drawnGame = false;
+						line_b_6.style.height = '600px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[0].innerHTML == 'O' && text[4].innerHTML == 'O' && text[8].innerHTML == 'O'){
+						drawnGame = false;
+						line_c_7.style.width = '848px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+				}
+				if	(text[2].innerHTML == 'O' && text[4].innerHTML == 'O' && text[6].innerHTML == 'O'){
+						drawnGame = false;
+						line_c_8.style.width = '848px';
+						setTimeout( function(){alert('Победил нолик');}, 1000);
+						setTimeout( function(){window.location = '';}, 2000);
+					}
+
+
+//--------------------------------------drawnGame--------------------------------------------------------
+				
+
+				if (step == 9 && drawnGame) {
+					setTimeout( function(){alert('Ничья');}, 200);
+					setTimeout( function(){window.location = '';}, 500);
+				}
+			}
+		}
+
+		
+	</script>
+
+</body>
+</html>
